@@ -15,7 +15,7 @@ router.post('/login', login);
 // @desc    Get logged-in user info
 // @access  Protected
 router.get('/user', authMiddleware, async (req, res) => {
-  res.json({ user: req.user });
+  res.json({ user: {name: req.user.name,email: req.user.email,role: req.user.role} });
 });
 
 module.exports = router;
