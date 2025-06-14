@@ -16,6 +16,11 @@ const ExcelRecordSchema = new mongoose.Schema({
     uploadedAt:{
         type:Date,
         default:Date.now
+    },
+    status:{
+        type:Boolean,
+        default:true
     }
 })
+
 module.exports = mongoose.models.ExcelRecord || mongoose.model('ExcelRecord',ExcelRecordSchema,'excelRecord')
