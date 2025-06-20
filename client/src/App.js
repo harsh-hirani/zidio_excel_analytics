@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+// ==== App.js ====
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
+import { PrivateRoute, AdminRoute, LogOut } from './PrivateRoute';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register.js';
+import Dashboard from './pages/Dashboard.js';
+import UserProfile from './pages/UserProfile.js';
+import Uploads from './pages/Uploads.js';
+import Charts from './pages/Charts.js';
+import ChartDetail from './pages/ChartDetail.js';
+import UploadDetail from './pages/UploadDetail.js';
+import AdminPage from './pages/Admin.js';
+import Layout from './Layout.jsx';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React hello how are you this is without backend
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/logout" element={<LogOut />} />
+
+          <Route element={<AdminRoute />}>
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
+
+          
+          <Route element={<PrivateRoute />}>
+            <Route element={<Layout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/u/profile" element={<UserProfile />} />
+              <Route path="/u/uploads" element={<Uploads />} />
+              <Route path="/u/charts" element={<Charts />} />
+              <Route path="/u/chart/:id" element={<ChartDetail />} />
+              <Route path="/u/upload/:id" element={<UploadDetail />} />
+            </Route>
+          </Route>
+
+          <Route path="*" element={<div>404 Not Found</div>} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
