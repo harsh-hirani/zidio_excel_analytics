@@ -32,11 +32,11 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route element={<Layout />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/u/profile" element={<UserProfile />} />
-              <Route path="/u/uploads" element={<Uploads />} />
-              <Route path="/u/charts" element={<Charts />} />
-              <Route path="/u/chart/:id" element={<ChartDetail />} />
-              <Route path="/u/upload/:id" element={<UploadDetail />} />
+              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/uploads" element={<Uploads />} />
+              <Route path="/charts" element={<Charts />} />
+              <Route path="/chart/:id" element={<ChartDetail />} />
+              <Route path="/upload/:id" element={<UploadDetail />} />
             </Route>
           </Route>
 

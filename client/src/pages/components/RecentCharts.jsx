@@ -46,7 +46,7 @@ const RecentCharts = () => {
           
           <button className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-1.5 text-theme-sm font-medium text-gray-700 shadow-theme-xs 
           hover:bg-accent -50 hover:text-secondary-800 "
-          onClick={()=>{navigate('/u/charts')}}>
+          onClick={()=>{navigate('/charts')}}>
             See all
           </button>
         </div>
@@ -74,7 +74,7 @@ const RecentCharts = () => {
 
           
             {tableData.map((product) => (
-              <tr key={product.id} className="cursor-pointer  rounded-2xl" onClick={()=>{navigate('/u/chart/'+product.id)}} >
+              <tr key={product.id} className="cursor-pointer  rounded-2xl" onClick={()=>{navigate('/chart/'+product.id)}} >
                 <td className="py-3">
                   <div className="flex items-center gap-3">
                     

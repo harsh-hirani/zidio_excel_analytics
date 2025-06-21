@@ -49,7 +49,7 @@ export default function Layout() {
         {/* Nav */}
         <nav className="flex flex-col gap-1">
           <NavLink
-            to="/u/upload/new"
+            to="/upload/new"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:text-primary hover:bg-accent/80 transition"
             onClick={() => setMobileOpen(false)}
           >
@@ -60,11 +60,11 @@ export default function Layout() {
             <MdDashboard className="text-lg" /> Dashboard
           </NavLink>
 
-          <NavLink to="/u/uploads" className={navLinkClass} onClick={() => setMobileOpen(false)}>
+          <NavLink to="/uploads" className={navLinkClass} onClick={() => setMobileOpen(false)}>
             <MdCloudUpload className="text-lg" /> Uploads
           </NavLink>
 
-          <NavLink to="/u/charts" className={navLinkClass} onClick={() => setMobileOpen(false)}>
+          <NavLink to="/charts" className={navLinkClass} onClick={() => setMobileOpen(false)}>
             <MdBarChart className="text-lg" /> Charts
           </NavLink>
         </nav>
@@ -78,7 +78,7 @@ export default function Layout() {
             <div className="flex flex-col gap-1">
               {recentCharts.map((item) => (
                 <NavLink
-                  to={`/u/chart/${item.id}`}
+                  to={`/chart/${item.id}`}
                   key={item.id}
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
@@ -102,7 +102,7 @@ export default function Layout() {
       {/* Profile */}
       <div className="relative px-1 mt-8" ref={profileRef}>
         <NavLink
-          to="/u/profile"
+          to="/profile"
 
           className="block  text-sm border-t-2 text-text-main  hover:text-primary"
         >

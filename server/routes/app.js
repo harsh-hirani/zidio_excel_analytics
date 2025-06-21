@@ -69,6 +69,37 @@ router.get('/record/:id', async (req, res) => {
     }
 })
 
+// GET /app/dashboard 
+router.get('/dashboard',async (req,res,next)=>{
+    try {
+        // Get paginated records (only selected fields)
+        const records = await ExcelRecord.find({ user: req.user.id })
+            .sort({ uploadedAt: -1 })
+            .skip(0)
+            .limit(8)
+            .select('_id fileName uploadedAt')
+            .lean();
+
+        // Map to include totalSize
+        const mappedRecords = records.map(rec => ({
+            id: rec._id,
+            fname: rec.fileName,
+            sec: rec.uploadedAt,
+        }));
+
+        // Get total count separately
+        const total = await ExcelRecord.countDocuments({ user: req.user.id });
+
+        res.json({
+            uploads: mappedRecords,
+            totalU: total,
+            charts: [],
+            totalC:0
+        });
+    } catch (err) {
+        next(err);
+    }
+})
 // GET /app/recent-uploads?page=1&limit=10
 router.get('/recent-uploads', async (req, res, next) => {
     try {
@@ -82,19 +113,18 @@ router.get('/recent-uploads', async (req, res, next) => {
             .sort({ uploadedAt: -1 })
             .skip(skip)
             .limit(limit)
-            .select('_id fileName uploadedAt data')
+            .select('_id fileName uploadedAt')
             .lean();
 
         // Map to include totalSize
         const mappedRecords = records.map(rec => ({
-            _id: rec._id,
-            fileName: rec.fileName,
-            uploadedAt: rec.uploadedAt,
-            totalSize: rec.data.length
+            id: rec._id,
+            fname: rec.fileName,
+            sec: rec.uploadedAt,
         }));
 
         // Get total count separately
-        const total = await ExcelRecord.countDocuments({ user: req.user._id });
+        const total = await ExcelRecord.countDocuments({ user: req.user.id });
 
         res.json({
             data: mappedRecords,
@@ -184,8 +214,16 @@ router.post('/recent-uploads', async (req, res) => {
     }
 })
 //deletes
+// DELETE /app/upload
 router.delete('/upload', async (req, res) => {
     try {
+        const rec = await ExcelRecord.findOne({_id:req.body?.id,user:req.user.id})
+        if(!rec){
+            return res.status(400).json({
+                msg:"no record found"
+            })
+        }
+        await ExcelRecord.deleteOne({_id:req.body?.id,user:req.user.id})
         res.status(200).json({
             "msg": "deleted",
             id: req.body?.id,

@@ -4,7 +4,7 @@ import CCard from "./CCard";
 import axios from "../../axiosClient";
 import * as XLSX from "xlsx";
 
-const Dropzone = () => {
+const Dropzone = ({ refresh}) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -69,6 +69,7 @@ const Dropzone = () => {
       setMessage(`✅ Uploaded successfully. Rows: ${res.data.rowCount}`);
       setFile(null);
       setPreviewData([]);
+      refresh(true);
     } catch (err) {
       console.error(err);
       setError("❌ Upload failed. Please try again.");
