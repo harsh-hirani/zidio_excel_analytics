@@ -1,7 +1,7 @@
 
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../axiosClient';
-const Table = ({ tabData, header,refresh }) => {
+const Table = ({ tabData, header,refresh ,navs}) => {
     const navigate = useNavigate()
   return (
     <div className="max-w-full overflow-x-auto">
@@ -32,7 +32,7 @@ const Table = ({ tabData, header,refresh }) => {
                 // console.log("sjc",dates);
                 
                 return(
-                <tr key={en.id} className="cursor-pointer  rounded-2xl" onClick={() => { navigate('/upload/' + en.id) }} >
+                <tr key={en.id} className="cursor-pointer  rounded-2xl" onClick={() => { navigate('/'+navs+'/' + en.id) }} >
                   <td className="py-3">
                     <div className="flex items-center gap-3">
 
@@ -64,7 +64,7 @@ const Table = ({ tabData, header,refresh }) => {
                       onClick={(e) => {
                         console.log('dle');
 
-                        apiClient.delete('/app/upload', { data: { id: en.id } }).then(res => {
+                        apiClient.delete('/app/'+navs, { data: { id: en.id } }).then(res => {
                           console.log(res);
                           if(res.data.msg === "deleted" ){
                             refresh(true)

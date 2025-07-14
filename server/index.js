@@ -16,6 +16,7 @@ app.get("/running",(req,res)=>{
 
 app.use('/auth', require('./routes/auth'));
 
+
 app.use('/app',authMiddleware, require('./routes/app'))
 app.use('/admin',authMiddleware, (req,res,next)=>{if(req.user.role == 'admin'){next()}else{res.status(401).json({msg:"Unauthorized Access"})}},require('./routes/admin'))
 const PORT = process.env.PORT || 3000;

@@ -45,7 +45,10 @@ const Uploads = () => {
   return (
     <>
       <div className="grid grid-cols-12 md:gap-6 mb-4">
-        <Header className="col-span-10 lg:col-start-2" text={'Uploads'} />
+        <div className="col-span-12 lg:col-span-10 lg:col-start-2 overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pb-3 pt-4  sm:px-6">
+          {/* <Pagination page={page} setPage={setPage} total={total} limit={limit}/> */}
+        <Header className="col-span-10 lg:col-start-2" ftext={'Uploads'} />
+        </div>
       </div>
       <div className="grid grid-cols-12 md:gap-6">
         <div className="col-span-12 lg:col-span-10 lg:col-start-2 overflow-x-auto mb-3 md:mb-0">
@@ -58,7 +61,7 @@ const Uploads = () => {
           ) : (
             <TableContainer>
               <TableHeader text="Recent Uploads" />
-              <Table tabData={data} header={['File', 'Uploaded At', 'Actions']} refresh={refresh} />
+              <Table navs="upload" tabData={data} header={['File', 'Uploaded At', 'Actions']} refresh={refresh} />
             </TableContainer>
             // <RecentUploads tabData={data} header={['File', 'Uploaded At', 'Actions']} refresh={refresh}/>
           )}

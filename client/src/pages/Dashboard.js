@@ -41,16 +41,18 @@ const Dashboard = () => {
           {/* <RecentUploads header={['File', 'Uploaded At', 'Actions']} tabData={uploadData} /> */}
           <TableContainer>
             <TableHeader text="Recent Uploads" />
-            <Table tabData={uploadData} header={['File', 'Uploaded At', 'Actions']} refresh={refresh} />
+            <Table navs={'upload'} tabData={uploadData} header={['File', 'Uploaded At', 'Actions']} refresh={refresh} />
           </TableContainer>
         </div>
 
         <div className="col-span-12 lg:col-span-5">
-          <RecentCharts />
+          <TableContainer>
+            <TableHeader text="Recent Charts" />
+            <Table navs={"chart"} tabData={chartData} header={['Chart', 'Created At', 'Actions']} refresh={refresh} />
+          </TableContainer>
+          
         </div>
       </div>
-      <Dropzone refresh={refresh}/>
-      Dash {JSON.stringify(user)}
     </div>
   )
 }

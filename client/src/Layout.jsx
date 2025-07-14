@@ -29,7 +29,7 @@ export default function Layout() {
   // }, []);
 
   useEffect(() => {
-    apiClient.post("/app/recent-charts")
+    apiClient.get("/app/recent-charts")
       .then(data => { console.log(data); return setRecentCharts(data?.data?.data || []) })
       .catch(() => setRecentCharts([]));
   }, []);
@@ -49,7 +49,7 @@ export default function Layout() {
         {/* Nav */}
         <nav className="flex flex-col gap-1">
           <NavLink
-            to="/upload/new"
+            to="/uploads/"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:text-primary hover:bg-accent/80 transition"
             onClick={() => setMobileOpen(false)}
           >
@@ -89,9 +89,9 @@ export default function Layout() {
                   }
                 >
                   <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">
-                    {item.title[0]}
+                    {item.fname[0]}
                   </div>
-                  {item.title}
+                  {item.fname}
                 </NavLink>
               ))}
             </div>

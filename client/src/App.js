@@ -35,7 +35,7 @@ function App() {
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/uploads" element={<Uploads />} />
               <Route path="/charts" element={<Charts />} />
-              <Route path="/chart/:id" element={<ChartDetail />} />
+              <Route path="/chart/:id" element={<ChartDetail labels={['Sales', 'Profit', 'Region', 'Date']} axisCount={2}/>}    />
               <Route path="/upload/:id" element={<UploadDetail />} />
             </Route>
           </Route>

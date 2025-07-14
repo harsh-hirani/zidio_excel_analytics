@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User')
 const ExcelRecord = require('../models/ExcelRecord');
+const Chart = require('../models/Chart')
 const t= require('../controllers/admin/actions')
 router.get('/users', async (req, res) => {
     try {
@@ -12,8 +13,18 @@ router.get('/users', async (req, res) => {
     }
 })
 router.get('/test',t.userExcelSummary)
-
-router.patch('/:action/:id', async (req, res) => {
+router.get('/stats',async (req,res,next)=>{
+    try{
+        const uploads = await ExcelRecord.countDocuments();
+        const charts = await Chart.countDocuments();
+        res.status(200).json({
+            uploads,charts
+        })
+    }catch(e){
+        next(e)
+    }
+})
+router.get('/:action/:id', async (req, res) => {
     const { action, id } = req.params;
 
     try {
