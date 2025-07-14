@@ -29,7 +29,7 @@ ChartJS.register(
   Legend
 );
 
-const Charter = ({ title, type, data, saveChart ,tt="Save Chart"}) => {
+const Charter = ({ title, type, data, saveChart, tt = "Save Chart" }) => {
   const chartRef = useRef();
 
   if (!data || !data.x || !data.y || data.x.length === 0 || data.y.length === 0) {
@@ -63,12 +63,23 @@ const Charter = ({ title, type, data, saveChart ,tt="Save Chart"}) => {
       break;
 
     case 'pie':
+      const grouped = {};
+      data.x.forEach((label, i) => {
+        grouped[label] = (grouped[label] || 0) + data.y[i];
+      });
+      const labels = Object.keys(grouped);
+      const values = Object.values(grouped);
+      const backgroundColors = [
+        '#FF6384', '#36A2EB', '#FFCE56',
+        '#4BC0C0', '#9966FF', '#FF9F40',
+        '#8B4513', '#20B2AA', '#FF69B4', '#A52A2A'
+      ];
       chartData = {
+        labels,
         datasets: [
           {
-            label:  'Scatter',
-            data: data.x.map((xVal, i) => ({ x: xVal, y: data.y[i] })),
-            backgroundColor: 'rgba(255,99,132,1)'
+            data: values,
+            backgroundColor: backgroundColors.slice(0, labels.length),
           }
         ]
       };
@@ -78,14 +89,16 @@ const Charter = ({ title, type, data, saveChart ,tt="Save Chart"}) => {
       chartData = {
         datasets: [
           {
-            data: {
-              x: data.x,
-              y: data.y
-            }
-          }
-        ]
-
+            label: title,
+            data: data.x.map((xVal, idx) => ({
+              x: xVal,
+              y: data.y[idx],
+            })),
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+          },
+        ],
       };
+
       options.scales = {
         x: { type: 'linear', position: 'bottom' },
       };
@@ -150,7 +163,7 @@ const Charter = ({ title, type, data, saveChart ,tt="Save Chart"}) => {
         </button>
         <button
           onClick={saveChart}
-          className={"px-4 py-2  text-white rounded "+ (tt=="Delete Chart" ? "hover:bg-red-700 bg-red-600":"hover:bg-purple-700 bg-purple-600")}
+          className={"px-4 py-2  text-white rounded " + (tt == "Delete Chart" ? "hover:bg-red-700 bg-red-600" : "hover:bg-purple-700 bg-purple-600")}
         >
           {tt}
         </button>

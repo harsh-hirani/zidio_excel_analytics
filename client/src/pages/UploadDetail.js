@@ -87,7 +87,7 @@ const UploadDetail = () => {
 
     const isPie = chartType.toLowerCase() === "pie";
     if (Object.keys(axisConf).length === 0 || isPie) {
-      toast.error('');
+      
       return;
     }
 
@@ -124,7 +124,6 @@ const UploadDetail = () => {
     }
 
     // All good
-    toast.error('');
   }, [axisConf])
   function saveChart() {
     if (!chartTitle || !chartType || chartData.x.length === 0 || chartData.y.length === 0) {
@@ -186,7 +185,9 @@ const UploadDetail = () => {
         <div className="col-span-12 lg:col-span-10 lg:col-start-2 overflow-hidden rounded-2xl  border border-accent bg-white px-4 pb-2 pt-1  sm:px-1">
           <div className="rounded-2xl  bg-white px-4 pb-3 pt-4  sm:px-6">
             <h2 class="text-2xl font-semibold text-secondary ">Ai Summary</h2>
-            <p class="my-4 text-sm text-text-main ">Start developing with an open-source library of over 450+ UI components, sections, and pages built with the utility classes from Tailwind CSS and designed in Figma.</p>
+            <p class="my-4 text-sm text-text-main ">
+              Ai summary not available
+            </p>
 
           </div>
         </div>

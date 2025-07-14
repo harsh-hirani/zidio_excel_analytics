@@ -180,7 +180,7 @@ export default function Layout() {
               <div className="flex flex-col text-[11px] md:items-end">
                 <strong>Contact</strong>
                 support@excelsage.com<br />
-                +91 98765 43210
+                +91 00000 43210
               </div>
             </div>
           </footer>
