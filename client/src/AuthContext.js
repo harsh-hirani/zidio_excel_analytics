@@ -2,7 +2,8 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:5000';
+// axios.defaults.baseURL = 'https://ex-back-h2g5.onrender.com';
+ axios.defaults.baseURL = 'http://localhost:5000';
 
 export const AuthContext = createContext();
 

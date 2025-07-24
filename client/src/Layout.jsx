@@ -119,6 +119,20 @@ export default function Layout() {
             <span className="font-medium">{user?.name}</span>
           </button>
         </NavLink>
+        {user.role == 'admin' && <NavLink
+          to="/admin"
+
+          className="block  text-sm border-dotted border-t-2 text-text-main  hover:text-primary"
+        >
+
+          <button
+
+            className="flex items-center w-full gap-2 px-1 py-1 rounded-lg text-sm hover:bg-sidebar-hover"
+          >
+            
+            <span className="font-medium">Admin Panel</span>
+          </button>
+        </NavLink>}
 
 
       </div>

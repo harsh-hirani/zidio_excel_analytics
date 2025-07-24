@@ -19,7 +19,6 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<LogOut />} />
@@ -28,14 +27,15 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
           </Route>
 
-          
+
           <Route element={<PrivateRoute />}>
             <Route element={<Layout />}>
+              <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/uploads" element={<Uploads />} />
               <Route path="/charts" element={<Charts />} />
-              <Route path="/chart/:id" element={<ChartDetail labels={['Sales', 'Profit', 'Region', 'Date']} axisCount={2}/>}    />
+              <Route path="/chart/:id" element={<ChartDetail labels={['Sales', 'Profit', 'Region', 'Date']} axisCount={2} />} />
               <Route path="/upload/:id" element={<UploadDetail />} />
             </Route>
           </Route>
